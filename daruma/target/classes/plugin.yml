@@ -1,0 +1,6 @@
+name: Daruma
+version: 1.0-SNAPSHOT
+main: daruma.daruma.Daruma
+commands:
+  daruma:
+    description: ダルマコマンド

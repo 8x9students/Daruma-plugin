@@ -1,0 +1,6 @@
+name: Daruma
+version: ${project.version}
+main: daruma.daruma.Daruma
+commands:
+  daruma:
+    description: ダルマコマンド
