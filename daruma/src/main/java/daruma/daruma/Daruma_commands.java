@@ -8,6 +8,10 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
+import static java.lang.Thread.sleep;
 import static org.bukkit.Bukkit.getServer;
 
 
@@ -28,17 +32,37 @@ public class Daruma_commands implements CommandExecutor {
                         sender.sendMessage("ターンが０です");
                         return false;
                     }
-                    getServer().broadcastMessage(ChatColor.WHITE+"ターン数は"+ChatColor.RED+Daruma.turn+ChatColor.WHITE+"です");
-                    getServer().broadcastMessage(ChatColor.WHITE+"ゲームを開始します…");
-                    for (Player target : Bukkit.getOnlinePlayers()) {
-                        if (target.getGameMode()== GameMode.ADVENTURE) {
-                            target.teleport(Daruma.startpoint);
+                    Daruma.game=true;
+                    Timer timer = new Timer();
+                    TimerTask task = new TimerTask() {
+                        @Override
+                        public void run() {
+                            for (Player target : Bukkit.getOnlinePlayers()) {
+                                if (target.getGameMode()== GameMode.ADVENTURE) {
+                                    target.teleport(Daruma.startpoint);
+                                }
+                            }
+                            getServer().broadcastMessage(ChatColor.WHITE+"ターン数は"+ChatColor.RED+Daruma.turn+ChatColor.WHITE+"です");
+                            getServer().broadcastMessage(ChatColor.WHITE+"5秒後にゲームを開始します…");
+                            Daruma.check=true;
+                            for (int i=5;i>=1;i--){
+                                getServer().broadcastMessage(ChatColor.RED+""+i);
+                                try {
+                                    sleep(1000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            new Game().game();
                         }
-                    }
-                    new Game().main();
+                    };
+                    timer.schedule(task,0);
                     break;
                 case "setstartpoint":
                     new Setstartpoint().setstartpoint((Player)sender);
+                    break;
+                case "end":
+                    new End().end();
                     break;
                 default:
                     sender.sendMessage("未知のコマンドです");

@@ -11,11 +11,12 @@ public final class Daruma extends JavaPlugin implements Listener {
     static int turn = 0;
     static Location startpoint = null;
     static boolean move = false;
+    static boolean check = false;
+    static boolean game = false;
     @Override
     public void onEnable() {
         Objects.requireNonNull(this.getCommand("Daruma")).setExecutor(new Daruma_commands());
         getServer().getPluginManager().registerEvents(new hantei(),this);
-        getServer().getPluginManager().registerEvents(new Move(),this);
         getLogger().info("だるま起動しました");
         // Plugin startup logic
     }

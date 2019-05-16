@@ -1,8 +1,9 @@
 daruma/daruma/hantei.class
 daruma/daruma/Setstartpoint.class
+daruma/daruma/End.class
 daruma/daruma/Game.class
-daruma/daruma/Move.class
 daruma/daruma/Daruma.class
 daruma/daruma/Game$1.class
 daruma/daruma/Turn.class
+daruma/daruma/Daruma_commands$1.class
 daruma/daruma/Daruma_commands.class

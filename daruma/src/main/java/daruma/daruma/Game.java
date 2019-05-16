@@ -5,18 +5,20 @@ import org.bukkit.ChatColor;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static java.lang.Thread.sleep;
 import static org.bukkit.Bukkit.getServer;
 
 class Game {
-    void main() {
+    void game() {
         Timer timer = new Timer(false);
         TimerTask task =new TimerTask() {
             int count = 0;
+            int turn = Daruma.turn;
             @Override
             public void run() {
-                if(Daruma.turn==0){
+                if(!Daruma.game){
+                    Daruma.check=false;
                     timer.cancel();
-                    getServer().broadcastMessage(ChatColor.WHITE + "終了！");
                 }
                 if (count == 1) {
                     getServer().broadcastMessage(ChatColor.WHITE + "だ");
@@ -41,12 +43,24 @@ class Game {
                 }
                 count++;
                 if(count==11){
+                    Daruma.move=true;
+                    try {
+                        sleep(3000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     count=0;
-                    Daruma.turn--;
-                    getServer().broadcastMessage(ChatColor.WHITE + "残りターン数：" + ChatColor.RED + Daruma.turn);
+                    turn--;
+                    Daruma.move=false;
+                    getServer().broadcastMessage(ChatColor.WHITE + "残りターン数：" + ChatColor.RED + turn);
+                }
+                if(turn==0){
+                    getServer().broadcastMessage(ChatColor.WHITE + "終了！");
+                    Daruma.check=false;
+                    timer.cancel();
                 }
             }
         };
-        timer.schedule(task,3000,1000);
+        timer.schedule(task,0,1000);
     }
 }

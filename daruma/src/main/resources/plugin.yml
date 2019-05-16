@@ -4,3 +4,6 @@ main: daruma.daruma.Daruma
 commands:
   daruma:
     description: ダルマコマンド
+permissions:
+  Daruma:
+    default: op
