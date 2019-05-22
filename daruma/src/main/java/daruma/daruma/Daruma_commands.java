@@ -71,6 +71,9 @@ public class Daruma_commands implements CommandExecutor {
                 case "end":
                     new End().end();
                     break;
+                case "rank":
+                    new Rank().rank();
+                    break;
                 default:
                     sender.sendMessage("未知のコマンドです");
             }

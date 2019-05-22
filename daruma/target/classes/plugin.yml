@@ -17,6 +17,9 @@ commands:
   end:
     description: ゲームを強制終了させます。
 
+  rank:
+    description: ランキングを表示します
+
 permissions:
   Daruma:
     default: op

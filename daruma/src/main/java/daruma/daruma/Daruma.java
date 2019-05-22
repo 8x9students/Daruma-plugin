@@ -15,7 +15,7 @@ public final class Daruma extends JavaPlugin implements Listener {
     static boolean move = false;
     static boolean check = false;
     static boolean game = false;
-    static ArrayList<String>     list = new ArrayList<>();
+    static ArrayList<String> list = new ArrayList<>();
     @Override
     public void onEnable() {
         Objects.requireNonNull(this.getCommand("Daruma")).setExecutor(new Daruma_commands());
