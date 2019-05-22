@@ -32,6 +32,8 @@ public class Daruma_commands implements CommandExecutor {
                         sender.sendMessage("ターンが０です");
                         return false;
                     }
+                    Daruma.list.clear();
+                    Daruma.rank=1;
                     Daruma.game=true;
                     Timer timer = new Timer();
                     TimerTask task = new TimerTask() {
@@ -46,6 +48,10 @@ public class Daruma_commands implements CommandExecutor {
                             getServer().broadcastMessage(ChatColor.WHITE+"5秒後にゲームを開始します…");
                             Daruma.check=true;
                             for (int i=5;i>=1;i--){
+                                if(!Daruma.game){
+                                    Daruma.check=false;
+                                    timer.cancel();
+                                }
                                 getServer().broadcastMessage(ChatColor.RED+""+i);
                                 try {
                                     sleep(1000);
@@ -54,6 +60,7 @@ public class Daruma_commands implements CommandExecutor {
                                 }
                             }
                             new Game().game();
+                            timer. cancel();
                         }
                     };
                     timer.schedule(task,0);

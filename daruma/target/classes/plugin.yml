@@ -1,9 +1,22 @@
 name: Daruma
-version: 1.0-SNAPSHOT
+version: 1.0
 main: daruma.daruma.Daruma
 commands:
   daruma:
     description: ダルマコマンド
+
+  setstartpoint:
+    description: スタート地点を設定します。
+
+  turn:
+    description: ターン数を指定します
+
+  start:
+    description: ゲームを開始します
+
+  end:
+    description: ゲームを強制終了させます。
+
 permissions:
   Daruma:
     default: op

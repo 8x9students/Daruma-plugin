@@ -19,7 +19,7 @@ import org.bukkit.inventory.ItemStack;
 
 import static org.bukkit.Bukkit.getServer;
 
-public class hantei implements Listener {
+public class Hantei implements Listener {
     @EventHandler
     public void GoalEvent(PlayerInteractEvent event) {
         if (Daruma.check) {//ゴールした時
@@ -32,6 +32,8 @@ public class hantei implements Listener {
                         if (player.getGameMode() == GameMode.ADVENTURE) {
                             getServer().broadcastMessage(ChatColor.BLUE + player.getName() + ChatColor.WHITE + "さんがゴールしました！");
                             (player.getWorld()).playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 2, 1);
+                            Daruma.list.add(Daruma.rank +"位："+player.getName());
+                            Daruma.rank++;
                             player.setGameMode(GameMode.SPECTATOR);
                         }
                     }

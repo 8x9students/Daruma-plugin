@@ -16,6 +16,11 @@ class Game {
             int turn = Daruma.turn;
             @Override
             public void run() {
+                if(turn==0){
+                    getServer().broadcastMessage(ChatColor.WHITE + "終了！");
+                    Daruma.check=false;
+                    timer.cancel();
+                }
                 if(!Daruma.game){
                     Daruma.check=false;
                     timer.cancel();
@@ -53,11 +58,6 @@ class Game {
                     turn--;
                     Daruma.move=false;
                     getServer().broadcastMessage(ChatColor.WHITE + "残りターン数：" + ChatColor.RED + turn);
-                }
-                if(turn==0){
-                    getServer().broadcastMessage(ChatColor.WHITE + "終了！");
-                    Daruma.check=false;
-                    timer.cancel();
                 }
             }
         };
